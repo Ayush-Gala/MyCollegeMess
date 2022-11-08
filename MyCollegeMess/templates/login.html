@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCollegeMess</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login.css'%}">
+</head>
+<body style="background-color:#f1f1f1">
+    <h1 text-align=center>Welcome to MyCollegeMess Portal</h1> 
+    <form action="homepage" method="POST">
+    {% csrf_token %}
+        <div class = "imgcontainer">
+            <img src="{% static 'logo.png'%}" alt="MyCollegeMess" class="avatar">
+        </div>
+
+        {%for message in messages%}
+        <div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert" align="center">
+            <strong>Message:</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-lable="Close" padding: 16px>
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter password" name="psw" required>
+
+            <button type="submit">Login</button>
+
+            <label>
+                <input type="checkbox" checked="checked" name="remember">Remember me
+            </label>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw"><a href="https://www.google.com/">Forgot password?</a></span>
+        </div>
+    </form>  
+</body>
+</html>

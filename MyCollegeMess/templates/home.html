@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCollegeMess</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css'%}">
+    <script></script>
+</head>
+<body style="background-color:#f1f1f1">
+    <div class = "ok">
+        <div>
+            <br>
+            Welcome to MyCollegeMess Student Portal {{customer.customer}}!
+            <button type="submit" style="float:right;"><a href="signout">Signout</a></button>
+        </div>
+        <br><br>
+        <div align = "left">
+            <u>Your Profile is as follows:</u> 
+            <br>
+            No. of coupons left: {{customer.noOfCoupons}} <br>
+            Amount Paid: {{customer.amt}}   Status: {{customer.paymentStatus}} <br>
+            Mess Start Date: {{customer.dateOfRegistration}} <br>
+            Mess End Date: {{customer.dateOfExpiry}} <br>
+        <div>
+        <div>
+            <br>
+            <h3>Today's Menu is:</h3>
+            Lunch Menu is: 
+            {% for i in lunchmenu %}
+                {{i}}
+            {% endfor %}
+            <br>
+            Dinner Menu is:
+            {% for i in dinnermenu %}
+                {{i}}
+            {% endfor %}
+        </div>
+        <div>
+            <p>Please submit your valuable feedback:</p>
+            <form action="feedback" method="POST">
+                {% csrf_token %}
+                <input type="text" name="fdbck" placeholder="Enter your feedback here" style="width: 520px">
+                <br><br>
+                <button type="submit">Submit Feedback for {{lunch.day}} <input type="text" name="type" placeholder="Lunch/Dinner" style="width: 100px"required></button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
